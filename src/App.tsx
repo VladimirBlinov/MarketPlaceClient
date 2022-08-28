@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useForm, SubmitHandler } from "react-hook-form";
 import './App.css';
+import { Header } from './components/Header';
+import { ProductList } from './components/ProductList';
+import { Register } from './components/Register';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Register />
+
+
+
+      {/* <ProductList products={[
+        {product_name: "Менажница", 
+        category_id: 11111111,
+        pieces_in_pack: 1,
+        material_id:1,
+        weight: 200,
+        height: 10,
+        lenght: 300,
+        width: 200,
+        description: "описание", }
+      ]} /> */}
+
     </div>
   );
 }
