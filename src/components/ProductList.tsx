@@ -5,14 +5,10 @@ type Props = {
     products: Product[],
 }
 
-export const ProductList: React.FC<Props> = ({ products }) => {
-    return (
-        <ul className="product-list">
-            {
-                products.map((product, i) => (
-                    <li key={i}>{product.product_name}</li>
-                ))
-            }
-        </ul>
+const ProductList = () => {
+    return(
+        <div>Products List</div>
     )
 }
+
+export default ProductList

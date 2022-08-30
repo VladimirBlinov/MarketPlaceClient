@@ -1,12 +1,9 @@
 import { useForm } from "react-hook-form";
 import './Register.scss'
-import { signup } from "../services/auth.service";
+import { login } from "../services/auth.service";
 import { useNavigate  } from "react-router-dom";
-import { useState } from "react";
 
-export const Register = () => {
-    const [message, setMessage] = useState<string>("");
-    
+export const Login = () => {
     const {
         register,
         formState:{
@@ -19,20 +16,18 @@ export const Register = () => {
     });
     
     let navigate = useNavigate();
-    
-    const onSubmit = (data: any) => {
-        signup(data.email, data.password).then(
-            (response) => {
-                setMessage(response.data.message);
-                navigate("/login");
-                window.location.reload();
-            })
-    }
 
+    const onSubmit = (data: any) => {
+        login(data.email, data.password).then(
+            () => {
+              navigate("/profile");
+              window.location.reload();
+            })
+    };
     return (
         <div className="form-plug">
-        <section className="form-register">
-        <h2>Sign up</h2>
+        <section className="form-login">
+        <h2>Sign in</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
             <label>
                 Email:
@@ -53,20 +48,6 @@ export const Register = () => {
             <div className="errmsg">
                 {errors?.password && errors?.password?.message?.toString()}
             </div>
-
-            <label>
-                Confirm Password
-                <input type="password" placeholder="Confirm Password" {...register("confirm_password",
-                 {required: true,
-                  validate: (val: string) => {
-                    if (watch('password') != val) {
-                        return "Пароль не совпадает";
-                    }}})
-                } />
-            </label>
-            <div className="errmsg">
-                {errors?.confirm_password && errors?.confirm_password?.message?.toString()}
-            </div>
             
             <input type="submit" value="Submit" />
         </form>
@@ -74,3 +55,4 @@ export const Register = () => {
        </div>
     )
 }
+
