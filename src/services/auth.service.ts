@@ -3,7 +3,7 @@ import IUser from "../entities/user.type";
 
 const API_URL = "http://localhost:8080";
 
-export const signup = (email: string, password: string) => {
+export const logon = (email: string, password: string) => {
     let data = JSON.stringify({
         email: email,
         password: password
@@ -19,6 +19,10 @@ export const login = (email: string, password: string) => {
         password: password
     })
     return axios.post(API_URL + "/sessions", data, { withCredentials: true })
+};
+
+export const logout = () => {
+    return axios.post(API_URL + "/logout", { withCredentials: true })
 };
 
 export const getCurrentUser = () => {

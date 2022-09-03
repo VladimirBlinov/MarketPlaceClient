@@ -14,3 +14,15 @@
     transform: translate(0%, -50%);
     height: auto;
 }
+
+menu{
+    height: auto;
+    padding: 2px;
+    margin: 2px;
+}
+
+#root > menu > a{
+    padding: 2px;
+    margin: 2px;
+    font-weight: bold;
+}

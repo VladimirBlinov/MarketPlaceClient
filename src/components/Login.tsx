@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import './Register.scss'
-import { login } from "../services/auth.service";
-import { useNavigate  } from "react-router-dom";
+import { getCurrentUser, login } from "../services/auth.service";
+import { useLocation, useNavigate  } from "react-router-dom";
+import { useAuth } from "../services/useAuth";
+import IUser from "../entities/user.type";
 
 export const Login = () => {
     const {
@@ -15,15 +17,23 @@ export const Login = () => {
         mode: "onBlur"
     });
     
-    let navigate = useNavigate();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const {signin} = useAuth();
+
+    // const fromPage = location.pathname ? (location.pathname) : ('/')
 
     const onSubmit = (data: any) => {
+
         login(data.email, data.password).then(
             () => {
-              navigate("/profile");
-              window.location.reload();
+                getCurrentUser().then((user) => {
+                    console.log(user)
+                    if (user){
+                        signin(user, () => navigate('/profile', {replace: true}))
+                    }
             })
-    };
+        })};
     return (
         <div className="form-plug">
         <section className="form-login">
@@ -55,4 +65,3 @@ export const Login = () => {
        </div>
     )
 }
-

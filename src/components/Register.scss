@@ -3,17 +3,17 @@ section {
     height: auto;
     width: 100%;
     max-width: 300px;
-    min-height: 400px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
     background-color: rgb(45, 143, 255);
     align-items: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // position: absolute;
     
 }
 
@@ -103,4 +103,5 @@ input {
     height: 100%;
     position: relative;
     align-items: center;
+    padding-top: 30px;
 }

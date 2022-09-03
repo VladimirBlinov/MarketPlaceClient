@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Header } from './components/Header';
 import axios from 'axios';
 
+
 axios.defaults.headers.common['Content-Type'] = 'application/json'
 axios.defaults.headers.common['Accept'] = 'application/json'
 
@@ -14,7 +15,6 @@ axios.defaults.headers.common['Accept'] = 'application/json'
 ReactDOM.render(
   
   <BrowserRouter>
-    <Header/>
     <App />
   </BrowserRouter>,
   document.getElementById('root')

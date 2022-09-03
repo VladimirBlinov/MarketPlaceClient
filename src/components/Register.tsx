@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import './Register.scss'
-import { signup } from "../services/auth.service";
+import { logon } from "../services/auth.service";
 import { useNavigate  } from "react-router-dom";
 import { useState } from "react";
 
@@ -21,11 +21,10 @@ export const Register = () => {
     let navigate = useNavigate();
     
     const onSubmit = (data: any) => {
-        signup(data.email, data.password).then(
+        logon(data.email, data.password).then(
             (response) => {
                 setMessage(response.data.message);
-                navigate("/login");
-                window.location.reload();
+                navigate("/login", {replace: true});
             })
     }
 
