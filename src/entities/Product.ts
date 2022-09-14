@@ -1,4 +1,5 @@
-export type Product = {
+export default interface IProduct {
+    product_id: number,
     product_name: string,
     category_id:   number,
     pieces_in_pack: number,
@@ -8,4 +9,12 @@ export type Product = {
     width:        number,
     height:       number,
     description:  string,
+    user_id:  number,
+}
+
+export default interface IProductCategory {
+    category_id:   number,
+    category_name: string,
+    parent_category_id:   number,
+    active:  boolean,
 }
