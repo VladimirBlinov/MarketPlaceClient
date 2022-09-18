@@ -1,4 +1,4 @@
-export default interface IProduct {
+export interface IProduct {
     product_id: number,
     product_name: string,
     category_id:   number,
@@ -12,9 +12,16 @@ export default interface IProduct {
     user_id:  number,
 }
 
-export default interface IProductCategory {
+export  interface ICategory {
     category_id:   number,
     category_name: string,
     parent_category_id:   number,
+    active:  boolean,
+    subcategories: ICategory[]
+}
+
+export  interface IMaterial {
+    material_id:   number,
+    material_name: string,
     active:  boolean,
 }

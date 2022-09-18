@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import './Register.scss'
+import './Forms.scss'
 import { logon } from "../services/auth.service";
 import { useNavigate  } from "react-router-dom";
 import { useState } from "react";
@@ -33,7 +34,7 @@ export const Register = () => {
         <section className="form-register">
         <h2>Sign up</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
+            <label className="register">
                 Email:
                 <input type="text" placeholder="Email" {...register("email", 
                     {required: "Обязательное поле", 
@@ -45,7 +46,7 @@ export const Register = () => {
                 {errors?.email && errors?.email?.message?.toString()}
             </div>
 
-            <label>
+            <label className="register">
                 Password:
                 <input type="password" placeholder="Password" {...register("password", {required: "Обязательное поле", min: 8})} />
             </label>
@@ -53,7 +54,7 @@ export const Register = () => {
                 {errors?.password && errors?.password?.message?.toString()}
             </div>
 
-            <label>
+            <label className="register">
                 Confirm Password
                 <input type="password" placeholder="Confirm Password" {...register("confirm_password",
                  {required: true,

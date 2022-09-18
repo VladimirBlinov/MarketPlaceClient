@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import './Register.scss'
+import './Forms.scss'
 import { getCurrentUser, login } from "../services/auth.service";
 import { useLocation, useNavigate  } from "react-router-dom";
 import { useAuth } from "../services/useAuth";
@@ -39,7 +40,7 @@ export const Login = () => {
         <section className="form-login">
         <h2>Sign in</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
+            <label className="login">
                 Email:
                 <input type="text" placeholder="Email" {...register("email", 
                     {required: "Обязательное поле", 
@@ -51,7 +52,7 @@ export const Login = () => {
                 {errors?.email && errors?.email?.message?.toString()}
             </div>
 
-            <label>
+            <label className="login">
                 Password:
                 <input type="password" placeholder="Password" {...register("password", {required: "Обязательное поле", min: 8})} />
             </label>

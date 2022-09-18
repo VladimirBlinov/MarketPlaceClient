@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom"
-import IProduct from "../entities/Product";
+import {IProduct} from "../entities/Product";
 import { getProduct } from "../services/productService";
 
 const Product = () => {

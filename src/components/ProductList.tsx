@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import IProduct from "../entities/Product"
+import {IProduct} from "../entities/Product"
 import { getProducts } from "../services/productService"
 
 

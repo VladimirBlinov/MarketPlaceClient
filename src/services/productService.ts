@@ -1,6 +1,6 @@
 import axios from "axios";
-import IProduct from "../entities/Product";
-import IProductCategory from "../entities/Product";
+import {IMaterial, IProduct} from "../entities/Product";
+import {ICategory} from "../entities/Product";
 
 const API_URL = "http://localhost:8080"
 
@@ -40,8 +40,38 @@ export const getProductCategories = () => {
     const axiosInstance = axios.create({
         withCredentials: true
       })
-    return axiosInstance.get<IProductCategory[]>(API_URL + "/private/product_category/get_categories", { withCredentials: true })
+    return axiosInstance.get<ICategory[]>(API_URL + "/private/product_category/get_categories", { withCredentials: true })
     .then((response) => {
-        return response.data
+        const sortCategories = (categories: ICategory[]) => {
+            const sortedCategories: any = [];
+            const categoriesMap: any = {};
+            categories.forEach((category: ICategory) => {
+              categoriesMap[category.category_id] = category;
+            });
+            categories.forEach((category: ICategory) => {
+              const parent = categoriesMap[category.parent_category_id];
+              if (parent) {
+                if (!parent.subcategories) {
+                  parent.subcategories = [];
+                }
+                parent.subcategories.push(category);
+              } else {
+                sortedCategories.push(category);
+              }
+            });
+            return sortedCategories;
+          }
+
+        return sortCategories(response.data)
     })
+}
+
+export const getProductMaterials = () => {
+  const axiosInstance = axios.create({
+      withCredentials: true
+    })
+  return axiosInstance.get<IMaterial[]>(API_URL + "/private/product_category/get_materials", { withCredentials: true })
+  .then((response) => {
+      return response.data
+  })
 }
