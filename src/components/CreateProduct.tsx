@@ -3,44 +3,12 @@ import './Forms.scss'
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import {IMaterial, IProduct} from "../entities/Product"
+import {createFormCategories, createFormMaterials, IFormCategory, IFormMaterial, IMaterial, IProduct} from "../entities/Product"
 import {ICategory} from "../entities/Product"
 import { createProduct, getProductCategories, getProductMaterials } from "../services/productService"
 import { useAuth } from "../services/useAuth"
 
-interface IFormCategory  {
-    value: number
-    name: string
-    class: string
-}
 
-interface IFormMaterial{
-    value: number
-    name: string
-    class: string
-}
-
-function createFormCategories(category: ICategory, spaces: number, form_product_categories: IFormCategory[]) {
-    const spacer = "-";
-    const formProductCategory: IFormCategory ={name: spacer.repeat(spaces) + category.category_name,
-        value: category.category_id, class: "category"};
-        if (spaces == 0 || spaces == 1){
-            formProductCategory.class = "main-category"
-        }
-        form_product_categories.push(formProductCategory)
-    if(category.subcategories){
-        spaces++
-        category.subcategories.forEach((category: any) => createFormCategories(category, spaces, form_product_categories))
-    }
-    return
-} 
-
-function createFormMaterials(material: IMaterial, form_product_materials: IFormMaterial[]) {
-    const formProductMaterial: IFormCategory ={name: material.material_name,
-        value: material.material_id, class: "material"};
-        form_product_materials.push(formProductMaterial)
-    return
-} 
 
 const CreateProduct = () => {
     const navigate = useNavigate()
@@ -104,6 +72,14 @@ const CreateProduct = () => {
                     }
             </select>
 
+            <label className="form-product-label">
+                Количество в упаковке:
+                <input defaultValue={0} type="text" placeholder="шт" {...register("pieces_in_pack") } />
+            </label>
+            <div className="errmsg">
+                {errors?.pieces_in_pack && errors?.pieces_in_pack?.message?.toString()}
+            </div>
+
             <label className="form-product-label">Материал:</label>
             <select className="material_id" {...register("material_id",{required: "Обязательное поле"})}>
                     {formProductMaterials.map((form_material: IFormMaterial) => (
@@ -111,6 +87,38 @@ const CreateProduct = () => {
                         ))
                     }
             </select>
+            
+            <label className="form-product-label">
+                Вес:
+                <input defaultValue={0} type="text" placeholder="г" {...register("weight") } />
+            </label>
+            <div className="errmsg">
+                {errors?.weight && errors?.weight?.message?.toString()}
+            </div>
+
+            <label className="form-product-label">
+                Длина:
+                <input defaultValue={0} type="text" placeholder="мм" {...register("lenght") } />
+            </label>
+            <div className="errmsg">
+                {errors?.lenght && errors?.lenght?.message?.toString()}
+            </div>
+
+            <label className="form-product-label">
+                Ширина:
+                <input defaultValue={0} type="text" placeholder="мм" {...register("width") } />
+            </label>
+            <div className="errmsg">
+                {errors?.width && errors?.width?.message?.toString()}
+            </div>
+
+            <label className="form-product-label">
+                Высота:
+                <input defaultValue={0} type="text" placeholder="мм" {...register("height") } />
+            </label>
+            <div className="errmsg">
+                {errors?.height && errors?.height?.message?.toString()}
+            </div>
 
             <label className="form-product-label">
                 Описание:
@@ -118,6 +126,22 @@ const CreateProduct = () => {
             </label>
             <div className="errmsg">
                 {errors?.description && errors?.description?.message?.toString()}
+            </div>
+
+            <label className="form-product-label">
+                Ozon SKU:
+                <input defaultValue={0} type="text" placeholder="Ozon SKU" {...register("ozon_sku") } />
+            </label>
+            <div className="errmsg">
+                {errors?.ozon_sku && errors?.ozon_sku?.message?.toString()}
+            </div>
+
+            <label className="form-product-label">
+                Wildberries SKU:
+                <input defaultValue={0} type="text" placeholder="Wildberries SKU" {...register("wildberries_sku") } />
+            </label>
+            <div className="errmsg">
+                {errors?.wildberries_sku && errors?.wildberries_sku?.message?.toString()}
             </div>
             
             <input className='submit-create-product' type="submit" value="Создать" />

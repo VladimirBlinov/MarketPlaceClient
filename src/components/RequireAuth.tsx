@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom"
-import IUser from "../entities/user.type";
+import IUser from "../entities/User";
 import * as AuthService from "../services/auth.service";
 import { useAuth } from "../services/useAuth";
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {Link, Outlet, useNavigate} from 'react-router-dom'
 import './Header.scss'
 import * as AuthService from "../services/auth.service";
-import IUser from '../entities/user.type';
+import IUser from '../entities/User';
 import { useAuth } from '../services/useAuth';
 
 const Layout = () => {

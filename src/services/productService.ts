@@ -5,8 +5,8 @@ import {ICategory} from "../entities/Product";
 const API_URL = "http://localhost:8080"
 
 export const createProduct = (product: IProduct) => {
-    const data = JSON.stringify(product)
-    console.log(data)
+  const data = JSON.stringify(product)
+    console.log("before post" + data)
     const axiosInstance = axios.create({
         withCredentials: true
       })

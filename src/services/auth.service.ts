@@ -1,5 +1,5 @@
 import axios from "axios";
-import IUser from "../entities/user.type";
+import IUser from "../entities/User";
 
 const API_URL = "http://localhost:8080";
 

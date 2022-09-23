@@ -4,7 +4,7 @@ import './Forms.scss'
 import { getCurrentUser, login } from "../services/auth.service";
 import { useLocation, useNavigate  } from "react-router-dom";
 import { useAuth } from "../services/useAuth";
-import IUser from "../entities/user.type";
+import IUser from "../entities/User";
 
 export const Login = () => {
     const {
