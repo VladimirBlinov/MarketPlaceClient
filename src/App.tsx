@@ -32,7 +32,7 @@ export default function App () {
                 <ProductList />
               </RequireAuth>
             } />
-            <Route path="products/:product_id/edit" element={
+            <Route path="products/edit/:product_id" element={
               <RequireAuth>
                 <EditProduct />
               </RequireAuth>

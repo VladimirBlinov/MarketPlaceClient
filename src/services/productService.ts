@@ -17,7 +17,7 @@ export const getProducts = () => {
     const axiosInstance = axios.create({
         withCredentials: true
       })
-    return axiosInstance.get<IProduct[]>(API_URL + "/private/product_list", { withCredentials: true })
+    return axiosInstance.get<IProduct[]>(API_URL + "/private/product_all", { withCredentials: true })
     .then((response) => {
         return response.data
     })
@@ -28,9 +28,9 @@ export const getProduct = (product_id: string | undefined) => {
         withCredentials: true
       })
     
-      const data = JSON.stringify(product_id)
+    // const data = JSON.stringify(product_id)
     
-    return axiosInstance.post<IProduct>(API_URL + "/private/get_product", data, { withCredentials: true })
+    return axiosInstance.get<IProduct>(API_URL + `/private/product/${product_id}`)
     .then((response) => {
         return response.data
     })
@@ -70,7 +70,7 @@ export const getProductMaterials = () => {
   const axiosInstance = axios.create({
       withCredentials: true
     })
-  return axiosInstance.get<IMaterial[]>(API_URL + "/private/product_category/get_materials", { withCredentials: true })
+  return axiosInstance.get<IMaterial[]>(API_URL + "/private/product_material/get_materials", { withCredentials: true })
   .then((response) => {
       return response.data
   })

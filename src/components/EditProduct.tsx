@@ -55,7 +55,7 @@ const EditProduct = () => {
     return(
         <div className="form-product-plug">
         <section className="form-product">
-        <h2>Создать новый товар</h2>
+        <h2>Изменить товар</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
             <label className="form-product-label">
                 Название:
@@ -147,7 +147,7 @@ const EditProduct = () => {
                 {errors?.wildberries_sku && errors?.wildberries_sku?.message?.toString()}
             </div>
             
-            <input className='submit-create-product' type="submit" value="Создать" />
+            <input className='submit-create-product' type="submit" value="Сохранить" />
         </form>
        </section>
        </div>
