@@ -8,7 +8,7 @@ export const logon = (email: string, password: string) => {
         email: email,
         password: password
     })
-    return axios.post(API_URL + "/users", 
+    return axios.post(API_URL + "/register", 
         data);
 };
 
@@ -18,11 +18,11 @@ export const login = (email: string, password: string) => {
         email: email,
         password: password
     })
-    return axios.post(API_URL + "/sessions", data, { withCredentials: true })
+    return axios.post(API_URL + "/signin", data, { withCredentials: true })
 };
 
 export const logout = () => {
-    return axios.post(API_URL + "/logout", { withCredentials: true })
+    return axios.post(API_URL + "/signout", { withCredentials: true })
 };
 
 export const getCurrentUser = () => {

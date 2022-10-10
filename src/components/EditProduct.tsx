@@ -2,17 +2,28 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom"
 import { createFormCategories, createFormMaterials, ICategory, IFormCategory, IFormMaterial, IMaterial, IProduct } from "../entities/Product";
-import { createProduct, getProduct, getProductCategories, getProductMaterials } from "../services/productService";
+import { createProduct, getProduct, getProductCategories, getProductMaterials, updateProduct } from "../services/productService";
 import { useAuth } from "../services/useAuth";
 
 const EditProduct = () => {
     const {product_id} = useParams();
-    console.log(product_id)
     const navigate = useNavigate()
     const {user} = useAuth();
     const [productCategories, setProductCategories] = useState<ICategory[]>([])
     const [productMaterials, setProductMaterials] = useState<IMaterial[]>([])
     const [product, setProduct] = useState<IProduct>();
+    const {
+        register,
+        control,
+        setValue,
+        reset,
+        formState:{
+            errors,
+        },
+        handleSubmit,
+        } = useForm<IProduct>({
+        defaultValues: product,
+    });
 
     useEffect(() => {
         getProductCategories()
@@ -22,23 +33,17 @@ const EditProduct = () => {
             .then(productMaterials => setProductMaterials(productMaterials))
 
         getProduct(product_id)
-        .then(product => setProduct(product))
+        .then((product: IProduct) => {setProduct(product);
+            reset(product);
+        })
+        
     }, [product_id])
-
-    const {
-        register,
-        control,
-        formState:{
-            errors,
-        },
-        handleSubmit,
-    } = useForm<IProduct>();
 
     const onSubmit = (product: IProduct) =>{
         if(product_id)
             product.product_id = +product_id
 
-        createProduct(product).then(() => navigate('/products', {replace: true}))
+        updateProduct(product).then(() => navigate('/products', {replace: true}))
     }
 
     const formProductCategories: IFormCategory[] = [];

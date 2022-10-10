@@ -6,18 +6,27 @@ const API_URL = "http://localhost:8080"
 
 export const createProduct = (product: IProduct) => {
   const data = JSON.stringify(product)
-    console.log("before post" + data)
-    const axiosInstance = axios.create({
-        withCredentials: true
-      })
-    return axiosInstance.post(API_URL + "/private/product_create", data)
+  console.log("before post" + data)
+  const axiosInstance = axios.create({
+      withCredentials: true
+    })
+  return axiosInstance.post(API_URL + "/private/product/create", data)
+}
+
+export const updateProduct = (product: IProduct) => {
+  const data = JSON.stringify(product)
+  console.log("before post" + data)
+  const axiosInstance = axios.create({
+      withCredentials: true,
+    })
+  return axiosInstance.post(API_URL + `/private/product/update/${product.product_id}`, data)
 }
 
 export const getProducts = () => {
     const axiosInstance = axios.create({
         withCredentials: true
       })
-    return axiosInstance.get<IProduct[]>(API_URL + "/private/product_all", { withCredentials: true })
+    return axiosInstance.get<IProduct[]>(API_URL + "/private/product/all", { withCredentials: true })
     .then((response) => {
         return response.data
     })
@@ -27,20 +36,19 @@ export const getProduct = (product_id: string | undefined) => {
     const axiosInstance = axios.create({
         withCredentials: true
       })
-    
-    // const data = JSON.stringify(product_id)
-    
-    return axiosInstance.get<IProduct>(API_URL + `/private/product/${product_id}`)
+
+    return axiosInstance.get<IProduct>(API_URL + `/private/product/product/${product_id}`)
     .then((response) => {
         return response.data
     })
 };
 
+
 export const getProductCategories = () => {
     const axiosInstance = axios.create({
         withCredentials: true
       })
-    return axiosInstance.get<ICategory[]>(API_URL + "/private/product_category/get_categories", { withCredentials: true })
+    return axiosInstance.get<ICategory[]>(API_URL + "/private/product/category/get_categories", { withCredentials: true })
     .then((response) => {
         const sortCategories = (categories: ICategory[]) => {
             const sortedCategories: any = [];
@@ -70,7 +78,7 @@ export const getProductMaterials = () => {
   const axiosInstance = axios.create({
       withCredentials: true
     })
-  return axiosInstance.get<IMaterial[]>(API_URL + "/private/product_material/get_materials", { withCredentials: true })
+  return axiosInstance.get<IMaterial[]>(API_URL + "/private/product/material/get_materials", { withCredentials: true })
   .then((response) => {
       return response.data
   })

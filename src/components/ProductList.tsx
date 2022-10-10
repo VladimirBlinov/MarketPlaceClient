@@ -35,7 +35,7 @@ const ProductList = () => {
                 <tbody>
                 {products.map((product: IProduct) => (
                 <tr className="products" key={product.product_id}>
-                    <td className="product-first"><Link to={`/products/${product.product_id}/edit`}> <button className="edit-product">Редактировать</button></Link></td>
+                    <td className="product-first"><Link to={`/products/edit/${product.product_id}`}> <button className="edit-product">Редактировать</button></Link></td>
                     <td><Link to={`/products/${product.product_id}`}>{product.product_name}</Link></td>
                     {(product.ozon_sku != 0)? (<td>{product.ozon_sku}</td>):(<td></td>)}
                     {(product.wildberries_sku != 0)? (<td>{product.wildberries_sku}</td>):(<td></td>)}
