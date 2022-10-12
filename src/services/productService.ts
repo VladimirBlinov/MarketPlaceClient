@@ -10,23 +10,14 @@ export const createProduct = (product: IProduct) => {
   const axiosInstance = axios.create({
       withCredentials: true
     })
-  return axiosInstance.post(API_URL + "/private/product/create", data)
-}
-
-export const updateProduct = (product: IProduct) => {
-  const data = JSON.stringify(product)
-  console.log("before post" + data)
-  const axiosInstance = axios.create({
-      withCredentials: true,
-    })
-  return axiosInstance.post(API_URL + `/private/product/update/${product.product_id}`, data)
+  return axiosInstance.post(API_URL + "/private/product/product", data)
 }
 
 export const getProducts = () => {
     const axiosInstance = axios.create({
         withCredentials: true
       })
-    return axiosInstance.get<IProduct[]>(API_URL + "/private/product/all", { withCredentials: true })
+    return axiosInstance.get<IProduct[]>(API_URL + "/private/product/product", { withCredentials: true })
     .then((response) => {
         return response.data
     })
@@ -43,6 +34,22 @@ export const getProduct = (product_id: string | undefined) => {
     })
 };
 
+export const deleteProduct = (product_id: string | undefined) => {
+  console.log("delete" + product_id)
+  const axiosInstance = axios.create({ 
+      withCredentials: true,
+    })
+  return axiosInstance.delete(API_URL + `/private/product/product/${product_id}`)
+}
+
+export const updateProduct = (product: IProduct) => {
+  const data = JSON.stringify(product)
+  console.log("before post" + data)
+  const axiosInstance = axios.create({
+      withCredentials: true,
+    })
+  return axiosInstance.put(API_URL + `/private/product/product/${product.product_id}`, data)
+}
 
 export const getProductCategories = () => {
     const axiosInstance = axios.create({

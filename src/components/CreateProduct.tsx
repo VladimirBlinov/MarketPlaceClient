@@ -10,6 +10,7 @@ import { useAuth } from "../services/useAuth"
 
 
 
+
 const CreateProduct = () => {
     const navigate = useNavigate()
     const {user} = useAuth();

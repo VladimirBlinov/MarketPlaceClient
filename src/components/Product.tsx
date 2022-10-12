@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom"
 import {IProduct} from "../entities/Product";
-import { getProduct } from "../services/productService";
+import { deleteProduct, getProduct } from "../services/productService";
 
 const Product = () => {
-
+    const navigate = useNavigate();
     const {product_id} = useParams();
     const [product, setProduct] = useState<IProduct>();
 
@@ -23,6 +23,7 @@ const Product = () => {
                     <>
                     <h2>Товар {product.product_name}</h2>
                     <Link to={`/products/edit/${product_id}`}> <button className="edit-product">Редактировать</button></Link>
+                    <Link to="/products" onClick={() => deleteProduct(product_id).then(() => navigate('/products', {replace: true}))}><button className="delete-product">Удалить</button></Link>
                     <p>{product.description}</p>
                     </>
                     ):(
