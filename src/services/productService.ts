@@ -1,11 +1,12 @@
 import axios from "axios";
 import {IMaterial, IProduct} from "../entities/Product";
 import {ICategory} from "../entities/Product";
+import { serializeProduct } from "../serializers/productSerializer";
 
 const API_URL = "http://localhost:8080"
 
 export const createProduct = (product: IProduct) => {
-  const data = JSON.stringify(product)
+  const data = serializeProduct(product)
   console.log("before post" + data)
   const axiosInstance = axios.create({
       withCredentials: true
@@ -35,7 +36,6 @@ export const getProduct = (product_id: string | undefined) => {
 };
 
 export const deleteProduct = (product_id: string | undefined) => {
-  console.log("delete" + product_id)
   const axiosInstance = axios.create({ 
       withCredentials: true,
     })
@@ -43,7 +43,7 @@ export const deleteProduct = (product_id: string | undefined) => {
 }
 
 export const updateProduct = (product: IProduct) => {
-  const data = JSON.stringify(product)
+  const data = serializeProduct(product)
   console.log("before post" + data)
   const axiosInstance = axios.create({
       withCredentials: true,
