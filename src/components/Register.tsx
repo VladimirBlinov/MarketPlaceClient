@@ -59,7 +59,7 @@ export const Register = () => {
                 <input type="password" placeholder="Confirm Password" {...register("confirm_password",
                  {required: true,
                   validate: (val: string) => {
-                    if (watch('password') != val) {
+                    if (watch('password') !== val) {
                         return "Пароль не совпадает";
                     }}})
                 } />

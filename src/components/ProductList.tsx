@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {IProduct} from "../entities/Product"
 import { deleteProduct, getProducts } from "../services/productService"
 import './ProductList.scss'
-
-
-type Props = {
-    products: IProduct[],
-}
 
 const ProductList = () => {
     const [products, setProducts] = useState<IProduct[]>([])
@@ -40,8 +35,8 @@ const ProductList = () => {
                     <Link to="/products" onClick={() => deleteProduct(product.product_id.toString()).then(() => navigate('/products', {replace: true}))}><button className="delete-product">Удалить</button></Link>
                     </td>
                     <td><Link to={`/products/${product.product_id}`}>{product.product_name}</Link></td>
-                    {(product.ozon_sku != 0)? (<td>{product.ozon_sku}</td>):(<td></td>)}
-                    {(product.wildberries_sku != 0)? (<td>{product.wildberries_sku}</td>):(<td></td>)}
+                    {(product.ozon_sku !== 0)? (<td>{product.ozon_sku}</td>):(<td></td>)}
+                    {(product.wildberries_sku !== 0)? (<td>{product.wildberries_sku}</td>):(<td></td>)}
                 </tr>
                 ))}
                 </tbody>

@@ -1,6 +1,6 @@
 import './CreateProduct.scss'
 import './Forms.scss'
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import {createFormCategories, createFormMaterials, IFormCategory, IFormMaterial, IMaterial, IProduct} from "../entities/Product"
@@ -27,7 +27,6 @@ const CreateProduct = () => {
 
     const {
         register,
-        control,
         formState:{
             errors,
         },

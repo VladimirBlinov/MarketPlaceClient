@@ -3,7 +3,7 @@ import {IMaterial, IProduct} from "../entities/Product";
 import {ICategory} from "../entities/Product";
 import { serializeProduct } from "../serializers/productSerializer";
 
-const API_URL = "http://localhost:8080"
+const API_URL = "http://localhost:8080/api/v1"
 
 export const createProduct = (product: IProduct) => {
   const data = serializeProduct(product)

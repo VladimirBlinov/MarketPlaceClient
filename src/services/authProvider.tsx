@@ -1,7 +1,5 @@
-import axios from "axios";
 import { createContext, useState } from "react";
 import IUser from "../entities/User";
-const API_URL = "http://localhost:8080";
 
 type Props = {
     children: JSX.Element,

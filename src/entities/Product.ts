@@ -44,7 +44,7 @@ export function createFormCategories(category: ICategory, spaces: number, form_p
     const spacer = "-";
     const formProductCategory: IFormCategory ={name: spacer.repeat(spaces) + category.category_name,
         value: category.category_id, class: "category"};
-        if (spaces == 0 || spaces == 1){
+        if (spaces === 0 || spaces === 1){
             formProductCategory.class = "main-category"
         }
         form_product_categories.push(formProductCategory)

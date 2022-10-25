@@ -4,7 +4,6 @@ import './Forms.scss'
 import { getCurrentUser, login } from "../services/auth.service";
 import { useLocation, useNavigate  } from "react-router-dom";
 import { useAuth } from "../services/useAuth";
-import IUser from "../entities/User";
 
 export const Login = () => {
     const {
@@ -12,17 +11,13 @@ export const Login = () => {
         formState:{
             errors,
         },
-        watch,
         handleSubmit,
     } = useForm({
         mode: "onBlur"
     });
     
-    const location = useLocation();
     const navigate = useNavigate();
     const {signin} = useAuth();
-
-    // const fromPage = location.pathname ? (location.pathname) : ('/')
 
     const onSubmit = (data: any) => {
 

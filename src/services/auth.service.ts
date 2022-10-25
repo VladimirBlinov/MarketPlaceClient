@@ -1,7 +1,7 @@
 import axios from "axios";
 import IUser from "../entities/User";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "http://localhost:8080/api/v1";
 
 export const logon = (email: string, password: string) => {
     let data = JSON.stringify({

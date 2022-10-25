@@ -1,11 +1,6 @@
-import { useForm } from "react-hook-form";
 import { getCurrentUser } from "../services/auth.service";
-import { useNavigate  } from "react-router-dom";
 import { FC, useEffect, useState } from "react";
 import IUser from "../entities/User";
-import axios from "axios";
-
-const API_URL = "http://localhost:8080";
 
 const Profile: React.FC = () => {
     const [currentUser, setCurrentUser] = useState<IUser>();

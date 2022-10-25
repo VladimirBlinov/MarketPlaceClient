@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom"
 import { createFormCategories, createFormMaterials, ICategory, IFormCategory, IFormMaterial, IMaterial, IProduct } from "../entities/Product";
-import { createProduct, getProduct, getProductCategories, getProductMaterials, updateProduct } from "../services/productService";
+import { getProduct, getProductCategories, getProductMaterials, updateProduct } from "../services/productService";
 import { useAuth } from "../services/useAuth";
 
 const EditProduct = () => {
@@ -14,8 +14,6 @@ const EditProduct = () => {
     const [product, setProduct] = useState<IProduct>();
     const {
         register,
-        control,
-        setValue,
         reset,
         formState:{
             errors,
